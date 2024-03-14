@@ -37,11 +37,12 @@ func globalFlags(ctx android.BaseContext) []string {
 		cflags = append(cflags, "-DNEW_ION_HEAP")
 	}
 
-	matches, err = filepath.Glob("external/libdrm/Android.*")
+	// Disable DRM Graphics - for some reason they don't work on our device
+	/* matches, err = filepath.Glob("external/libdrm/Android.*")
 	_ = matches
 	if err == nil {
 		cflags = append(cflags, "-DHAS_DRM")
-	}
+	} */
 
 	if getMakeVars(ctx, "TW_INCLUDE_JPEG") != "" {
 		cflags = append(cflags, "-DTW_INCLUDE_JPEG")
